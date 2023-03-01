@@ -1,6 +1,0 @@
-#zuul:
-#  routes:
-#    foos:
-#      path: /employee-producer/**
-#      serviceId: employee-producer
-#      url: http://localhost:8081
