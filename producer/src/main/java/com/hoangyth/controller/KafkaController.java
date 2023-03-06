@@ -1,5 +1,6 @@
-package com.hoangyth;
+package com.hoangyth.controller;
 
+import com.hoangyth.service.Producer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
