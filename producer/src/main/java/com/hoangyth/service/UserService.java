@@ -10,4 +10,6 @@ public interface UserService {
     Optional<User> getUser(String userId);
 
     List<User> getUsers();
+
+    User createUser();
 }

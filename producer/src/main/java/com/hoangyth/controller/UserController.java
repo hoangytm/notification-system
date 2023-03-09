@@ -3,6 +3,7 @@ package com.hoangyth.controller;
 import com.hoangyth.model.User;
 import com.hoangyth.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,10 @@ public class UserController {
     @GetMapping("/users")
     public List<User> getUsers() {
         return userService.getUsers();
+    }
+
+    @PostMapping
+    public User createUser() {
+        return userService.createUser();
     }
 }
