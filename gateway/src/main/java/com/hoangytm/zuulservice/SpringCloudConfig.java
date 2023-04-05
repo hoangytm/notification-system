@@ -13,6 +13,7 @@ public class SpringCloudConfig {
         return builder.routes()
                 .route("producer", r -> r.path("/producer/**").filters(f -> f.stripPrefix(1)).uri("lb://producer"))
                 .route("consumer", r -> r.path("/consumer/**").filters(f -> f.stripPrefix(1)).uri("lb://comsumer"))
+                .route("block-service", r -> r.path("/block-service/**").filters(f -> f.stripPrefix(1)).uri("lb://block-service"))
                 .build();
     }
 
