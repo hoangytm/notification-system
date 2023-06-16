@@ -14,3 +14,6 @@ services:
       - ./dev/mariadb:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
+
+
+  # run docker with custom file name system>docker-compose -f docker-compose-mariadb.yml up

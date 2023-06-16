@@ -1,19 +1,14 @@
 package com.hoangyth.model;
 
-import com.hoangyth.validator.Name;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "folder_action")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class User {
+public class FolderAction {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID",
@@ -21,8 +16,7 @@ public class User {
     @Column(name = "ID", nullable = false, length = 100)
     private String id;
 
-    @Column(name = "USER_NAME", length = 2000)
-    @Name(max= 1000, min= 3, message="invalid user name")
-    private String userName;
+    private String name;
 
+    private String detail;
 }
