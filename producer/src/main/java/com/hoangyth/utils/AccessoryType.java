@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum AccessoryType {
-    ATTACHMENT(1), CHILD_FOLDER(2);
+    ATTACHMENT(1), FOLDER(2);
     private static final Map<Integer, AccessoryType> BY_VAL_MAP = new HashMap<>();
 
     static {

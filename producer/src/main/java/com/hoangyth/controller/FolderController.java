@@ -16,13 +16,14 @@ import javax.validation.constraints.NotNull;
 public class FolderController {
     private final FolderService folderService;
 
+
     @PostMapping
     public String create(@RequestBody Folder folder) {
         return folderService.create(folder);
     }
 
     @PutMapping
-    public String update(@RequestBody com.hoangyth.model.Folder folder) {
+    public String update(@RequestBody Folder folder) {
         return folderService.update(folder);
     }
 

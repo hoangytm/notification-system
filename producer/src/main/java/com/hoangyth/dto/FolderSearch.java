@@ -11,7 +11,7 @@ import java.util.List;
 public class FolderSearch {
     @NotNull
     private String folderId;
-    private String folderName;
+    private String keyWord;
     private List<AccessoryType> accessoryTypes;
     private List<PermissionType> permissionTypes;
 

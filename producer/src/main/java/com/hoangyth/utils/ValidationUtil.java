@@ -3,6 +3,9 @@ package com.hoangyth.utils;
 import java.lang.reflect.Field;
 
 public class ValidationUtil {
+    private ValidationUtil(){
+
+    }
     public  static <T> void trimObjectPeroperty(T entity) throws IllegalAccessException {
         Field[] fields = entity.getClass().getDeclaredFields();
         for (Field field : fields) {

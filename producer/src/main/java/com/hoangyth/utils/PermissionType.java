@@ -25,7 +25,7 @@ public enum PermissionType {
      * @param val
      * @return
      */
-    public static PermissionType forValue(String val) {
+    public static PermissionType forValue(Integer val) {
         return BY_VAL_MAP.get(val);
     }
 

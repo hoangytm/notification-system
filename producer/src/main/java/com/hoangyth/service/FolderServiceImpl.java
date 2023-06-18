@@ -2,18 +2,17 @@ package com.hoangyth.service;
 
 import com.hoangyth.dto.FolderDto;
 import com.hoangyth.dto.FolderSearch;
-import com.hoangyth.model.Folder;
-import com.hoangyth.model.FolderPermission;
-import com.hoangyth.model.FolderPermissionPK;
-import com.hoangyth.model.Permission;
+import com.hoangyth.model.*;
 import com.hoangyth.repository.FolderPermissionRepository;
 import com.hoangyth.repository.FolderRepository;
+import com.hoangyth.utils.AccessoryType;
 import com.hoangyth.utils.MockToken;
 import com.hoangyth.utils.PermissionType;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -108,17 +107,31 @@ public class FolderServiceImpl implements FolderService {
 
     @Override
     public FolderDto search(FolderSearch folderSearch) {
+
         Optional<Permission> highestPermission = permissionService
                 .getHighestPermission(MockToken.getAdmin(), folderSearch.getFolderId());
         if (highestPermission.isPresent()) {
-            Folder folder = folderRepository.findById(folderSearch.getFolderId())
-                    .orElseThrow(() -> new RuntimeException(" folder not found"));
-
-            Optional<FolderPermission> folderPermission = permissionService
-                    .findAllByFolderIdAndUserId(folderSearch.getFolderId(), MockToken.getAdmin().getId());
             folderRepository.search(MockToken.getAdmin(), folderSearch);
+            FolderDto folderDto = new FolderDto();
+            if(folderSearch.getAccessoryTypes().contains(AccessoryType.ATTACHMENT)){
+                folderDto.setAttachments(findAttachmentByParent(folderSearch.getKeyWord(),folderSearch.getFolderId()));
+            }
+            if(folderSearch.getAccessoryTypes().contains(AccessoryType.FOLDER)){
+                folderDto.setFolders(findFolderByParent(folderSearch.getKeyWord(),folderSearch.getFolderId()));
+            }
+            return folderDto;
         }
         return null;
+    }
+
+    private List<Attachment> findAttachmentByParent(String attachmentName, String parentId) {
+        Attachment attachment = new Attachment();
+        return Collections.singletonList(attachment);
+    }
+
+    private List<Folder> findFolderByParent(String attachmentName, String parentId) {
+        return folderRepository.findFolderByParent(attachmentName, parentId);
+
     }
 
 }
